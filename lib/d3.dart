@@ -14,7 +14,18 @@ class _SigninScreenState extends State<SigninScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Center(child: Text("EXCESS"))),
+      appBar: AppBar(
+        title: Center(
+          child: Text(
+            "EXCESS",
+            style: TextStyle(
+              color: const Color.fromARGB(255, 0, 0, 0),
+              fontWeight: FontWeight.w600,
+              fontSize: 25,
+            ),
+          ),
+        ),
+      ),
       body: Column(
         children: [
           Center(
@@ -24,7 +35,7 @@ class _SigninScreenState extends State<SigninScreen> {
                 "Welcome to ERC",
                 style: TextStyle(
                   fontSize: 25,
-                  color: Colors.blueAccent,
+                  color: const Color.fromARGB(255, 0, 0, 0),
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -48,6 +59,8 @@ class _SigninScreenState extends State<SigninScreen> {
                         },
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
+                          filled: true,
+                          fillColor: const Color.fromARGB(255, 14, 194, 53),
                           hintText: "Enter your Email",
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15),
@@ -67,7 +80,7 @@ class _SigninScreenState extends State<SigninScreen> {
                           obscureText: true,
                           decoration: InputDecoration(
                             filled: true,
-                            fillColor: const Color.fromARGB(255, 190, 86, 17),
+                            fillColor: const Color.fromARGB(255, 31, 136, 206),
                             hintText: "Enter your password",
                             border: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.amberAccent),
@@ -82,7 +95,26 @@ class _SigninScreenState extends State<SigninScreen> {
                 IconButton(
                   onPressed: () {
                     if (validator.currentState!.validate()) {
-                      print("Your parameters are valid");
+                      if (emailController.text.toString() ==
+                              "hippo124@gmail.com" &&
+                          passwordController.text.toString() == "12345678") {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          snackBarAnimationStyle: AnimationStyle(
+                            duration: Duration(seconds: 1),
+                          ),
+                          SnackBar(
+                            content: Text(
+                              "You are Authenticated!",
+                              style: TextStyle(color: Colors.amberAccent),
+                            ),
+                            backgroundColor: Colors.green,
+                          ),
+                        );
+                      } else {
+                        snackBarAnimationStyle:
+                        AnimationStyle(duration: Duration(seconds: 1));
+                        print("You are wrong,User authentication failed");
+                      }
                     }
                     print("Button Pressed");
                   },
